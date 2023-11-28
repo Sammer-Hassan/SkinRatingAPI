@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/skin")
-@CrossOrigin(origins = "https://skinrating.netlify.app")
 public class SkinController {
     private SkinService SS;
 
