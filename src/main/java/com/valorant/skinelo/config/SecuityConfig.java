@@ -18,6 +18,8 @@ public class SecuityConfig implements WebMvcConfigurer {
         registry.addMapping("/api/v1/skin").allowedOrigins("https://skinrating.netlify.app");
         registry.addMapping("/api/v1/skin/Leaderboard").allowedOrigins("https://skinrating.netlify.app");
         registry.addMapping("/api/v1/skin/UpdateElo").allowedOrigins("https://skinrating.netlify.app");
+        registry.addMapping("/api/v1/skin/Counter").allowedOrigins("https://skinrating.netlify.app");
+
     }
 
 }

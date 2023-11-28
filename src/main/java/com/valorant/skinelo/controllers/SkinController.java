@@ -1,7 +1,9 @@
 package com.valorant.skinelo.controllers;
 
 
+import com.valorant.skinelo.entity.GlobalCounter;
 import com.valorant.skinelo.entity.Skin;
+import com.valorant.skinelo.service.CounterService;
 import com.valorant.skinelo.service.SkinService;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
@@ -19,13 +21,14 @@ import java.util.List;
 public class SkinController {
     private SkinService SS;
     private final Bucket bucket;
-
-    public SkinController(SkinService SS) {
+    private CounterService CS;
+    public SkinController(SkinService SS, CounterService CS) {
         this.SS = SS;
         Bandwidth limit = Bandwidth.classic(200, Refill.greedy(200, Duration.ofMinutes(1)));
         this.bucket = Bucket4j.builder()
                 .addLimit(limit)
                 .build();
+        this.CS = CS;
     }
 
     @PostMapping
@@ -39,6 +42,13 @@ public class SkinController {
         }
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
 
+    }
+    @GetMapping("/Counter")
+    public ResponseEntity<GlobalCounter> getCounter(){
+        if(bucket.tryConsume(1)){
+            return ResponseEntity.ok(CS.getCounter().get());
+        }
+        return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
     }
 
 
@@ -58,6 +68,7 @@ public class SkinController {
     public void updateElo(@RequestBody List<Long> values){
         if (bucket.tryConsume(1)) {
             SS.setElo(values);
+            CS.increment();
         }
     }
 
