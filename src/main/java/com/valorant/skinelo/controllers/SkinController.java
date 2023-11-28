@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@CrossOrigin(origins = "https://skinrating.netlify.app/#/")
+@CrossOrigin(origins = "https://skinrating.netlify.app")
 @RestController
 @RequestMapping("/api/v1/skin")
 public class SkinController {
