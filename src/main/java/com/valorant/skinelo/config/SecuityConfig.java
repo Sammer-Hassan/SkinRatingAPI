@@ -16,10 +16,10 @@ public class SecuityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         //https://skinrating.netlify.app
         WebMvcConfigurer.super.addCorsMappings(registry);
-        registry.addMapping("/api/v1/skin").allowedOrigins("http://localhost:8080");
-        registry.addMapping("/api/v1/skin/Leaderboard").allowedOrigins("http://localhost:8080");
-        registry.addMapping("/api/v1/skin/UpdateElo").allowedOrigins("http://localhost:8080");
-        registry.addMapping("/api/v1/skin/Counter").allowedOrigins("http://localhost:8080");
+        registry.addMapping("/api/v1/skin").allowedOrigins("https://skinrating.netlify.app");
+        registry.addMapping("/api/v1/skin/Leaderboard").allowedOrigins("https://skinrating.netlify.app");
+        registry.addMapping("/api/v1/skin/UpdateElo").allowedOrigins("https://skinrating.netlify.app");
+        registry.addMapping("/api/v1/skin/Counter").allowedOrigins("https://skinrating.netlify.app");
 
     }
 
