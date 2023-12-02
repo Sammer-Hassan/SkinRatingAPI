@@ -42,7 +42,6 @@ public class RateLimitInterceptor implements HandlerInterceptor {
         String remoteIpAddress = request.getHeader("X-Forwarded-For");
         if (remoteIpAddress == null || remoteIpAddress.isEmpty()) {
             remoteIpAddress = request.getRemoteAddr();
-            System.out.println(remoteIpAddress);
         }
         if (remoteIpAddress == null || remoteIpAddress.isEmpty()) {
             response.sendError(HttpStatus.BAD_REQUEST.value(), "Missing Header: remoteIpAddress");
